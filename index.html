@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategic Partnership Proposal — Improve ME Institute</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Blue theme palette - matching slide 1 title slide */
+      --blue-primary: #2E5AAC;
+      --blue-dark: #1E3A8A;
+      --blue-deck: #1A2F5A;
+      --blue-card: rgba(30, 41, 59, 0.9);
+      --blue-card-solid: #1A2F5A;
+      --blue-accent-card: rgba(46, 90, 172, 0.2);
+      --teal: #4FD1C5;
+      --teal-light: #2DD4BF;
+      --peach: #FFB5A0;
+      --yellow: #FFD17A;
+      --cream: #F3F4F6;
+      --white: #FFFFFF;
+      --muted: #9CA3AF;
+      --text-body: #E5E7EB;
+      --text-muted: #CBD5E1;
+      --border: rgba(255, 255, 255, 0.1);
+      --border-blue: rgba(46, 90, 172, 0.3);
+      --shadow-blue: 0 8px 32px rgba(46, 90, 172, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; font-family: 'DM Sans', sans-serif; background: #0f172a; color: var(--text-body); display: flex; align-items: center; justify-content: center; }
+
+    /* Fixed 16:9 presentation slide size (standard widescreen: 960×540) */
+    .deck {
+      --deck-w: min(960px, 90vw, calc(16 * 90vh / 9));
+      width: var(--deck-w);
+      height: calc(var(--deck-w) * 9 / 16);
+      position: relative;
+      background: linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      box-shadow: 0 0 0 1px var(--border), 0 25px 50px -12px rgba(0,0,0,0.5);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+      padding: 28px 40px;
+      overflow: auto;
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+    }
+    .slide.active { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; }
+
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .slide-logo { font-size: 0.7rem; font-weight: 600; color: var(--teal); letter-spacing: 0.05em; }
+    .slide-header .logo-img { height: 28px; width: auto; display: block; object-fit: contain; }
+    .logo-bg { display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; background: #fff; border-radius: 8px; }
+    .slide-title .logo-bg { padding: 8px 14px; }
+    .slide-confidential { font-size: 0.65rem; color: var(--text-muted); opacity: 0.9; }
+    .title-logos { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+    .title-logos .logo-improve-me { height: 48px; width: auto; object-fit: contain; }
+    .title-logos .logo-zoud { height: 48px; width: auto; object-fit: contain; }
+    .prepared-for { display: flex; align-items: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+    .prepared-for .logo-zoud { height: 40px; width: auto; object-fit: contain; }
+
+    /* Title slide: fill height, big heading, partners at bottom */
+    .slide-title { justify-content: space-between; padding-bottom: 20px; }
+    .slide-title .slide-body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; padding: 0; }
+    .slide-title .slide-body h2 { margin-bottom: 6px; }
+    .slide-title .slide-body h1 { font-size: clamp(1.85rem, 5vw, 2.85rem); margin-bottom: 10px; line-height: 1.15; }
+    .slide-title .slide-body .subtitle { margin-bottom: 8px; }
+    .slide-title .slide-body p { margin-bottom: 4px; }
+    .slide-title .slide-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); flex-shrink: 0; }
+    .slide-title .partner-block { display: flex; align-items: center; gap: 10px; }
+    .slide-title .partner-block .logo-img { height: 32px; width: auto; object-fit: contain; }
+    .slide-title .partner-block .logo-zoud { height: 32px; width: auto; object-fit: contain; }
+    .slide-title .partner-block .partner-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 0; }
+    .slide-title .partner-block .partner-name { font-size: 0.85rem; font-weight: 600; color: var(--text-body); margin: 0; }
+
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.25rem, 2.2vw, 1.75rem); font-weight: 700; margin-bottom: 4px; color: var(--white); line-height: 1.2; }
+    h2 { font-size: 0.75rem; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 12px; max-width: 100%; }
+    p { font-size: 0.8rem; line-height: 1.45; color: var(--text-body); margin-bottom: 6px; }
+    ul { margin: 8px 0 12px 18px; }
+    li { margin-bottom: 4px; line-height: 1.4; font-size: 0.8rem; color: var(--text-body); }
+
+    .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+    .stat { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-blue); min-width: 80px; box-shadow: var(--shadow-blue); }
+    .stat-value { font-size: 1.2rem; font-weight: 700; color: var(--teal); }
+    .stat-label { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+
+    .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+    .pillar { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px; border-radius: 8px; border: 1px solid var(--border-blue); border-left: 3px solid var(--teal); box-shadow: var(--shadow-blue); }
+    .pillar h3 { font-size: 0.8rem; color: var(--teal); margin-bottom: 4px; }
+    .pillar p { font-size: 0.75rem; margin-bottom: 0; }
+    .pillar .tag { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
+
+    /* Slide 3: Phase headers + large cards (reference layout) */
+    .phase-row { display: flex; align-items: stretch; gap: 0; margin-bottom: 14px; }
+    .phase-label { flex: 1; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 10px; padding: 8px 12px; text-align: center; position: relative; display: flex; flex-direction: column; justify-content: center; min-height: 48px; box-shadow: var(--shadow-blue); }
+    .phase-label .phase-num { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 2px 0; }
+    .phase-label .phase-name { font-size: 0.85rem; font-weight: 700; color: var(--white); margin: 0; }
+    .phase-connector { display: flex; align-items: center; justify-content: center; padding: 0 4px; color: var(--teal); font-size: 0.9rem; }
+    .phase-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 0; }
+    .phase-card { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; box-shadow: var(--shadow-blue); }
+    .phase-card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-accent-card); border: 1px solid var(--border-blue); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 1rem; color: var(--teal); }
+    .phase-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--white); margin: 0 0 8px 0; line-height: 1.2; }
+    .phase-card .phase-desc { font-size: 0.72rem; line-height: 1.4; color: var(--text-body); margin: 0 0 12px 0; flex: 1; }
+    .phase-card .phase-sub { background: var(--blue-accent-card); border: 1px solid var(--border-blue); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .phase-card .phase-sub .phase-sub-label { font-size: 0.65rem; color: var(--muted); margin: 0; }
+    .phase-card .phase-sub .phase-sub-value { font-size: 0.72rem; font-weight: 600; color: var(--cream); margin: 0; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; margin-top: 12px; }
+    .card { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px; border-radius: 8px; border: 1px solid var(--border-blue); box-shadow: var(--shadow-blue); }
+    .card h3 { font-size: 0.8rem; margin-bottom: 8px; color: var(--white); }
+    .person { margin-bottom: 10px; }
+    .person:last-child { margin-bottom: 0; }
+    .person-name { font-weight: 600; color: var(--white); font-size: 0.85rem; }
+    .person-role { font-size: 0.7rem; color: var(--teal); margin-bottom: 2px; }
+
+    .syllabus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 12px; margin-top: 10px; }
+    .syllabus-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.7rem; }
+    .syllabus-item strong { color: var(--teal); min-width: 90px; }
+
+    /* Slide 4: Curriculum Foundation + 5 cards */
+    .curriculum-intro { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 12px 14px 14px 44px; margin-bottom: 14px; position: relative; box-shadow: var(--shadow-blue); }
+    .curriculum-intro .curriculum-quote { position: absolute; left: 14px; top: 14px; font-size: 1.5rem; color: var(--muted); font-family: Georgia, serif; line-height: 1; }
+    .curriculum-intro .curriculum-intro-title { font-size: 1rem; font-weight: 700; color: var(--white); margin: 0 0 6px 0; }
+    .curriculum-intro .curriculum-intro-desc { font-size: 0.7rem; line-height: 1.4; color: var(--text-body); margin: 0; }
+    .curriculum-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 0; }
+    .curriculum-card { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; box-shadow: var(--shadow-blue); }
+    .curriculum-card-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--blue-accent-card); border: 1px solid var(--border-blue); display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 0.9rem; color: var(--teal); }
+    .curriculum-card-title { font-size: 0.8rem; font-weight: 700; color: var(--white); margin: 0 0 4px 0; text-align: center; line-height: 1.2; }
+    .curriculum-card-label { font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px 0; text-align: center; }
+    .curriculum-card-items { font-size: 0.62rem; line-height: 1.35; color: var(--text-body); }
+    .curriculum-card-items .item-title { font-weight: 600; color: var(--cream); display: block; margin-top: 4px; }
+    .curriculum-card-items .item-title:first-child { margin-top: 0; }
+    .curriculum-card-items .item-desc { margin: 0 0 4px 0; }
+
+    .budget-box { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px; border-radius: 8px; margin: 10px 0; border: 1px solid var(--border-blue); box-shadow: var(--shadow-blue); }
+    .budget-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border-blue); font-size: 0.75rem; color: var(--text-body); }
+    .budget-row:last-child { border-bottom: none; }
+    .dilemma { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--peach); font-size: 0.75rem; color: var(--text-body); }
+
+    .roadmap { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+    .roadmap-step { flex: 1; min-width: 140px; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px; border-radius: 8px; border: 1px solid var(--border-blue); border-top: 3px solid var(--teal); box-shadow: var(--shadow-blue); }
+    .roadmap-step .num { font-size: 1.1rem; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .roadmap-step h3 { font-size: 0.8rem; margin-bottom: 4px; }
+    .roadmap-step p { font-size: 0.7rem; }
+
+    /* Slide 7: Deployment Loop (reference layout, dark theme) — 50% left, 50% right */
+    .slide-deployment-page .slide-deployment { flex: 1; min-height: 0; }
+    .slide-deployment { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 8px; align-items: stretch; min-height: 0; }
+    .deployment-left { display: flex; flex-direction: column; min-width: 0; width: 100%; }
+    .deployment-title { font-size: 0.8rem; font-weight: 700; color: var(--white); margin: 0 0 10px 0; }
+    .deployment-diagram { flex: 1; background: var(--blue-accent-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 14px; padding: 24px; position: relative; min-height: 360px; box-shadow: var(--shadow-blue); display: flex; align-items: center; justify-content: center; }
+    .deployment-diagram .connector-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .deployment-diagram .connector-svg path { fill: none; stroke: #4FD1C5; stroke-width: 1.5; stroke-dasharray: 6 4; }
+    /* Center: square ~150px, dotted border, centered */
+    .deployment-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; border-radius: 12px; background: var(--blue-accent-card); border: 1px dashed #4FD1C5; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 2; box-shadow: 0 0 20px rgba(46, 90, 172, 0.2); }
+    .deployment-center-icon { font-size: 1.5rem; color: var(--teal); margin-bottom: 4px; line-height: 1; }
+    .deployment-center-text { font-size: 0.7rem; font-weight: 700; color: var(--cream); line-height: 1.2; }
+    /* Step cards: ~200-220px wide, positioned around center in circular arrangement */
+    .deployment-step { position: absolute; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 10px 12px; width: 210px; box-shadow: var(--shadow-blue); z-index: 2; }
+    .deployment-step .step-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: #fff; margin-right: 8px; flex-shrink: 0; vertical-align: middle; }
+    .deployment-step .step-num.n1 { background: #FFB5A0; }
+    .deployment-step .step-num.n2 { background: #FFD17A; }
+    .deployment-step .step-num.n3 { background: var(--blue-primary); }
+    .deployment-step .step-title { font-size: 0.85rem; font-weight: 700; color: var(--white); display: inline; vertical-align: middle; }
+    .deployment-step .step-desc { font-size: 0.65rem; font-weight: 400; line-height: 1.45; color: var(--text-body); margin: 6px 0 0 0; display: block; }
+    /* Workshops: top (12 o'clock); Scholarships: bottom-right; Societies/Clubs: bottom-left — spaced for 40–50px gap */
+    .deployment-step.step1 { top: 12px; left: 50%; transform: translateX(-50%); }
+    .deployment-step.step2 { bottom: 16px; right: -35px; }
+    .deployment-step.step3 { bottom: 16px; left: -35px; }
+    .deployment-right { display: flex; flex-direction: column; gap: 1rem; min-width: 0; width: 100%; }
+    .exaim-card { flex: 0 0 auto; width: 100%; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 12px; box-shadow: var(--shadow-blue); }
+    .exaim-card .exaim-title { font-size: 0.78rem; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .exaim-card .exaim-desc { font-size: 0.68rem; font-weight: 400; line-height: 1.45; color: var(--text-body); margin: 0 0 8px 0; }
+    .exaim-card .exaim-items { font-size: 0.6rem; color: var(--muted); }
+    .tracked-card { flex: 1; width: 100%; min-width: 0; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; box-shadow: var(--shadow-blue); min-height: 0; }
+    .tracked-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-shrink: 0; }
+    .tracked-card-head h3 { font-size: 0.8rem; font-weight: 700; color: var(--white); margin: 0; display: flex; align-items: center; gap: 6px; }
+    .tracked-card-head .targeted-btn { font-size: 0.6rem; padding: 4px 10px; border-radius: 8px; background: var(--blue-accent-card); border: 1px solid var(--border-blue); color: var(--text-body); }
+    .chart-legend { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.6rem; color: var(--muted); flex-shrink: 0; }
+    .chart-legend .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .chart-legend .dot.pre { background: var(--muted); }
+    .chart-legend .dot.post { background: var(--teal); }
+    .chart-bars { flex: 1; display: flex; align-items: flex-end; gap: 8px; min-height: 72px; }
+    .chart-bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .chart-bar-group .label { font-size: 0.6rem; color: var(--text-body); text-align: center; line-height: 1.15; }
+    .slide-deployment-page .chart-bar-group:last-child .label { font-size: 0.42rem; }
+    .slide-deployment-page h1 { font-size: clamp(0.9rem, 1.5vw, 1.15rem); }
+    .chart-bars-inner { display: flex; gap: 3px; align-items: flex-end; justify-content: center; height: 52px; }
+    .chart-bar { width: 12px; border-radius: 3px 3px 0 0; min-height: 4px; }
+    .chart-bar.pre { background: var(--muted); }
+    .chart-bar.post { background: var(--teal); }
+    .chart-bar.post.bar1 { background: #3b82f6; }
+    .chart-bar.post.bar2 { background: #EF4444; }
+    .chart-bar.post.bar3 { background: #FCD34D; }
+    .chart-bar.post.bar4 { background: #3b82f6; }
+    .tracked-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; flex-shrink: 0; }
+    .tracked-metric { display: flex; align-items: flex-start; gap: 8px; }
+    .tracked-metric .metric-icon { font-size: 1rem; color: var(--teal); flex-shrink: 0; }
+    .tracked-metric .metric-label { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 2px 0; font-weight: 600; }
+    .tracked-metric .metric-value { font-size: 1.05rem; font-weight: 800; color: var(--teal); margin: 0; }
+
+    .contact-box { margin-top: 12px; padding: 12px; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 8px; box-shadow: var(--shadow-blue); }
+    .contact-box h3 { font-size: 0.8rem; margin-bottom: 6px; }
+    .contact-box p { font-size: 0.75rem; }
+    .contact-box a { color: var(--teal); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
+
+    .nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue-deck); border: 1px solid var(--border-blue); cursor: pointer; transition: all 0.2s; }
+    .nav-dot:hover, .nav-dot.active { background: var(--teal); border-color: var(--teal); }
+    .nav-arrow { position: fixed; top: 50%; transform: translateY(-50%); padding: 12px; background: rgba(0,0,0,0.4); border: none; color: var(--cream); cursor: pointer; font-size: 1.25rem; z-index: 10; border-radius: 6px; }
+    .nav-arrow:hover { background: var(--blue-primary); }
+    .nav-prev { left: 12px; }
+    .nav-next { right: 12px; }
+    .slide-num { position: fixed; bottom: 16px; right: 16px; font-size: 0.7rem; color: var(--text-muted); opacity: 0.9; z-index: 10; }
+
+    .btn-download-pdf { position: fixed; bottom: 24px; left: 16px; padding: 8px 14px; background: var(--blue-card); border: 1px solid var(--border-blue); border-radius: 8px; color: var(--teal); font-size: 0.75rem; font-weight: 600; cursor: pointer; z-index: 10; display: flex; align-items: center; gap: 6px; box-shadow: var(--shadow-blue); font-family: inherit; }
+    .btn-download-pdf:hover { background: var(--blue-primary); color: var(--white); border-color: var(--blue-primary); }
+
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="deck">
+    <!-- Slide 1: Title -->
+    <section class="slide slide-title active" data-slide="1">
+      <div class="slide-body">
+        <h2>Strategic Partnership Proposal</h2>
+        <h1>The Financial Literacy Ecosystem</h1>
+        <p class="subtitle">A Scalable Partnership for Impact</p>
+        <p>To establish a financial literacy framework that leverages student leadership to create a self-sustaining educational network.</p>
+      </div>
+      <div class="slide-footer">
+        <div class="partner-block">
+          <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+          <div>
+            <p class="partner-label">Strategic Partner</p>
+            <p class="partner-name">Improve ME Institute</p>
+          </div>
+        </div>
+        <div class="partner-block prepared-for-block">
+          <div>
+            <p class="partner-label">Prepared for</p>
+            <p class="partner-name">Zoud</p>
+          </div>
+          <img src="download (2).jpg" alt="Zoud" class="logo-zoud" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Who We Are -->
+    <section class="slide" data-slide="2">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 2</span>
+      </div>
+      <h2>Leadership & Expertise</h2>
+      <h1>Who We Are</h1>
+      <p>A KHDA-approved provider delivering educational excellence. We combine academic rigor with practical life skills to shape future leaders.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Years Excellence</div></div>
+        <div class="stat"><div class="stat-value">40</div><div class="stat-label">Expert Faculty</div></div>
+        <div class="stat"><div class="stat-value">1,000+</div><div class="stat-label">Students Annually</div></div>
+        <div class="stat"><div class="stat-value">✓</div><div class="stat-label">KHDA Approved</div></div>
+      </div>
+      <h3 style="font-size: 0.8rem; margin: 12px 0 8px; color: var(--white);">Subject Matter Expertise</h3>
+      <div class="two-col">
+        <div class="card">
+          <div class="person">
+            <div class="person-role">Founder — Visionary</div>
+            <div class="person-name">Neeta Daswani</div>
+            <p>Over 30 years of expertise in raising academic standards and supporting student success across the region.</p>
+          </div>
+          <div class="person">
+            <div class="person-role">Financial Literacy Co-Founders — Strategy & Tech</div>
+            <div class="person-name">Shaun & Jason</div>
+            <p>Leading the initiative with backgrounds in finance & tech (Morgan Stanley). Alumni of UCL, LSE & Imperial College.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="person">
+            <div class="person-role">Head of Financial Education — Curriculum Design</div>
+            <div class="person-name">Mark</div>
+            <p>25+ years in financial services. Responsible for pedagogical structure and OECD-aligned syllabus design.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Three Pillars -->
+    <section class="slide" data-slide="3">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 3</span>
+      </div>
+      <h2>Core Framework</h2>
+      <h1>Our Offering: Three Pillars of Education</h1>
+      <div class="phase-row">
+        <div class="phase-label">
+          <span class="phase-num">Phase 1</span>
+          <span class="phase-name">Awareness</span>
+        </div>
+        <div class="phase-connector">→</div>
+        <div class="phase-label">
+          <span class="phase-num">Phase 2</span>
+          <span class="phase-name">Skill-Building</span>
+        </div>
+        <div class="phase-connector">→</div>
+        <div class="phase-label">
+          <span class="phase-num">Phase 3</span>
+          <span class="phase-name">Application</span>
+        </div>
+      </div>
+      <div class="phase-cards">
+        <div class="phase-card">
+          <div class="phase-card-icon" aria-hidden="true">◆</div>
+          <h3>High-Impact Events</h3>
+          <p class="phase-desc">Interactive engagement workshops designed to spark initial interest and curiosity in finance.</p>
+          <div class="phase-sub">
+            <span class="phase-sub-label">Example:</span>
+            <span class="phase-sub-value">"Bartering to Bitcoin"</span>
+          </div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-icon" aria-hidden="true">◇</div>
+          <h3>Structured Courses</h3>
+          <p class="phase-desc">Comprehensive term-long curriculum covering future-ready skills and core OECD principles.</p>
+          <div class="phase-sub">
+            <span class="phase-sub-label">Focus:</span>
+            <span class="phase-sub-value">Financial Capability & Resilience</span>
+          </div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-icon" aria-hidden="true">▲</div>
+          <h3>Practical Competitions</h3>
+          <p class="phase-desc">Real-world application through competitive pitching where students manage simulated capital.</p>
+          <div class="phase-sub">
+            <span class="phase-sub-label">Format:</span>
+            <span class="phase-sub-value">"Shark Tank" Style Pitching</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: OECD Syllabus -->
+    <section class="slide" data-slide="4">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 4</span>
+      </div>
+      <h2>OECD Framework</h2>
+      <h1>A Globally Aligned Financial Syllabus</h1>
+      <div class="curriculum-intro">
+        <span class="curriculum-quote" aria-hidden="true">"</span>
+        <h3 class="curriculum-intro-title">Curriculum Foundation</h3>
+        <p class="curriculum-intro-desc">Our curriculum is rigorously designed to meet the OECD Toolkit for Measuring Financial Literacy, ensuring global standards in financial education.</p>
+      </div>
+      <div class="curriculum-cards">
+        <div class="curriculum-card">
+          <div class="curriculum-card-icon" aria-hidden="true">◆</div>
+          <h3 class="curriculum-card-title">Financial Literacy</h3>
+          <span class="curriculum-card-label">Core Workshops</span>
+          <div class="curriculum-card-items">
+            <span class="item-title">Bartering to Bitcoin</span>
+            <span class="item-title">Young Entrepreneurs</span>
+          </div>
+        </div>
+        <div class="curriculum-card">
+          <div class="curriculum-card-icon" aria-hidden="true">◇</div>
+          <h3 class="curriculum-card-title">Financial Inclusion</h3>
+          <span class="curriculum-card-label">Partnership</span>
+          <div class="curriculum-card-items">
+            <span class="item-title">FAB Collaboration</span>
+            <p class="item-desc">"First Step" student savings accounts integration.</p>
+          </div>
+        </div>
+        <div class="curriculum-card">
+          <div class="curriculum-card-icon" aria-hidden="true">▲</div>
+          <h3 class="curriculum-card-title">Financial Resilience</h3>
+          <span class="curriculum-card-label">Scenario Workshop</span>
+          <div class="curriculum-card-items">
+            <span class="item-title">Risk Management</span>
+            <p class="item-desc">"Who Wants To Be A Millionaire" simulation.</p>
+          </div>
+        </div>
+        <div class="curriculum-card">
+          <div class="curriculum-card-icon" aria-hidden="true">●</div>
+          <h3 class="curriculum-card-title">Financial Wellbeing</h3>
+          <span class="curriculum-card-label">Goal Setting</span>
+          <div class="curriculum-card-items">
+            <span class="item-title">Planning Ahead</span>
+            <p class="item-desc">"Fail To Plan, Plan To Fail" strategic workshop.</p>
+          </div>
+        </div>
+        <div class="curriculum-card">
+          <div class="curriculum-card-icon" aria-hidden="true">▷</div>
+          <h3 class="curriculum-card-title">Digital Fin. Literacy</h3>
+          <span class="curriculum-card-label">Safety & Risk</span>
+          <div class="curriculum-card-items">
+            <span class="item-title">Cyber Safety</span>
+            <p class="item-desc">"Risky Business" workshop on digital fraud.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Super Savers -->
+    <section class="slide" data-slide="5">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 5</span>
+      </div>
+      <h2>Real-World Readiness</h2>
+      <h1>Super Savers Challenge — Applied Simulation</h1>
+      <p><strong>The Scenario:</strong> Students step into university life with a fixed monthly income. The goal is to survive the month while saving for the future.</p>
+      <p><strong>Monthly Income: AED 7,000</strong></p>
+      <p style="margin-top: 8px;">Real-World Trade-offs</p>
+      <div class="dilemma"><strong>Dilemma 1 — Housing:</strong> Choose a shared bathroom to afford essential university supplies?</div>
+      <div class="dilemma"><strong>Dilemma 2 — Social Life:</strong> Skip the weekend concert to maintain the 20% savings target?</div>
+      <div class="budget-box">
+        <div class="budget-row"><span>Needs (50%)</span><span>AED 3,500 — Rent, Groceries, Transport</span></div>
+        <div class="budget-row"><span>Wants (30%)</span><span>AED 2,100 — Leisure, Dining Out, Hobbies</span></div>
+        <div class="budget-row"><span>Savings (20%)</span><span>AED 1,400 — Emergency Fund, Future Goals</span></div>
+        <div class="budget-row" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 8px;"><span><strong>Total Budget</strong></span><span>AED 7,000</span></div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--muted);">Requirement: 100% Budget Adherence — The 50/30/20 Rule Application</p>
+    </section>
+
+    <!-- Slide 6: Case Study SCS -->
+    <section class="slide" data-slide="6">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 6</span>
+      </div>
+      <h2>Case Study Results</h2>
+      <h1>Impact Evidence: Safa Community School (SCS)</h1>
+      <p>Strategic Partner & Pilot Location — KHDA Rated "Outstanding"</p>
+      <h3 style="font-size: 0.8rem; margin: 10px 0 6px; color: var(--white);">The Ambassador Model</h3>
+      <ul>
+        <li><strong>Peer-to-Peer Leadership:</strong> Selected students act as co-facilitators, bridging the gap between expert faculty and student participants.</li>
+        <li><strong>Active Mentorship:</strong> Ambassadors guide peers through the simulation challenges, reinforcing their own understanding of financial concepts.</li>
+      </ul>
+      <h3 style="font-size: 0.8rem; margin: 10px 0 6px; color: var(--white);">Direct Outcomes</h3>
+      <ul>
+        <li><strong>University Applications:</strong> Ambassadors leveraged this experience as concrete evidence of leadership and extracurricular initiative in their university personal statements.</li>
+        <li><strong>Behavioral Change:</strong> 100% success rate in the simulation demonstrates effective transfer of theoretical budgeting knowledge to practical application.</li>
+      </ul>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-value">6</div><div class="stat-label">Student Ambassadors</div></div>
+        <div class="stat"><div class="stat-value">75</div><div class="stat-label">Student Participants</div></div>
+        <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Budget Adherence</div></div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Champion Ecosystem -->
+    <section class="slide slide-deployment-page" data-slide="7">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 7</span>
+      </div>
+      <h2>Scalability & Tracking</h2>
+      <h1>The Champion Ecosystem and Measurable Impact</h1>
+      <div class="slide-deployment">
+        <div class="deployment-left">
+          <h3 class="deployment-title">Sustainability: The Deployment Loop</h3>
+          <div class="deployment-diagram">
+            <svg class="connector-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <!-- Clockwise: Workshops (top) → Scholarships (bottom-right) → Societies/Clubs (bottom-left) → Workshops; wider at bottom for card spacing -->
+              <path d="M 50 6 Q 94 28 94 70 Q 50 94 6 70 Q 6 28 50 6" />
+            </svg>
+            <div class="deployment-center">
+              <span class="deployment-center-icon" aria-hidden="true">⚙</span>
+              <span class="deployment-center-text">Self-Running Ecosystem</span>
+            </div>
+            <div class="deployment-step step1">
+              <span class="step-num n1">1</span>
+              <span class="step-title">Workshops</span>
+              <span class="step-desc">Initial entry point to engage students & identify talent.</span>
+            </div>
+            <div class="deployment-step step2">
+              <span class="step-num n2">2</span>
+              <span class="step-title">Scholarships</span>
+              <span class="step-desc">High-performing "Champions" receive advanced training.</span>
+            </div>
+            <div class="deployment-step step3">
+              <span class="step-num n3">3</span>
+              <span class="step-title">Societies/Clubs</span>
+              <span class="step-desc">Champions lead peer mentoring in schools & community.</span>
+            </div>
+          </div>
+        </div>
+        <div class="deployment-right">
+          <div class="exaim-card">
+            <div class="exaim-title"><span aria-hidden="true">▢</span> ExAIm Diagnostic Tool</div>
+            <p class="exaim-desc">AI-driven measurement of pre- and post-workshop learning.</p>
+            <div class="exaim-items">Situational Questions · Multiple Choice</div>
+          </div>
+          <div class="tracked-card">
+            <div class="tracked-card-head">
+              <h3><span aria-hidden="true">📊</span> Tracked Outcomes</h3>
+              <span class="targeted-btn">Targeted Growth</span>
+            </div>
+            <div class="chart-legend">
+              <span class="dot pre"></span> Pre-Program
+              <span class="dot post"></span> Post-Program
+            </div>
+            <div class="chart-bars">
+              <div class="chart-bar-group">
+                <div class="chart-bars-inner">
+                  <div class="chart-bar pre" style="height: 45%;"></div>
+                  <div class="chart-bar post bar1" style="height: 85%;"></div>
+                </div>
+                <span class="label">Financial Literacy</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bars-inner">
+                  <div class="chart-bar pre" style="height: 30%;"></div>
+                  <div class="chart-bar post bar2" style="height: 100%;"></div>
+                </div>
+                <span class="label">Budgeting Skill</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bars-inner">
+                  <div class="chart-bar pre" style="height: 40%;"></div>
+                  <div class="chart-bar post bar3" style="height: 80%;"></div>
+                </div>
+                <span class="label">Risk Awareness</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bars-inner">
+                  <div class="chart-bar pre" style="height: 15%;"></div>
+                  <div class="chart-bar post bar4" style="height: 45%;"></div>
+                </div>
+                <span class="label">Champion Pipeline</span>
+              </div>
+            </div>
+            <div class="tracked-metrics">
+              <div class="tracked-metric">
+                <span class="metric-icon" aria-hidden="true">◆</span>
+                <div>
+                  <p class="metric-label">Knowledge Gain</p>
+                  <p class="metric-value">+25–40%</p>
+                </div>
+              </div>
+              <div class="tracked-metric">
+                <span class="metric-icon" aria-hidden="true">◎</span>
+                <div>
+                  <p class="metric-label">Budget Adherence</p>
+                  <p class="metric-value">Target: 95%+</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Roadmap & Contact -->
+    <section class="slide" data-slide="8">
+      <div class="slide-header">
+        <span class="logo-bg"><img src="logo-370x90-1.png" alt="Improve ME Institute" class="logo-img" /></span>
+        <span class="slide-confidential">Confidential — Slide 8</span>
+      </div>
+      <h2>Next Steps</h2>
+      <h1>Partnership Roadmap & Execution</h1>
+      <p class="subtitle"><strong>Strategic Goal:</strong> Formalize strategic endorsement with Zoud to scale region-wide.</p>
+      <div class="roadmap">
+        <div class="roadmap-step">
+          <div class="num">1</div>
+          <h3>Finalize Partnership Agreement</h3>
+          <p>Finalize strategic partnership to facilitate access to schools and integrate into the ecosystem.</p>
+        </div>
+        <div class="roadmap-step">
+          <div class="num">2</div>
+          <h3>Engagement & Talent — Workshops</h3>
+          <p>Run engagement workshops and identify potential scholarship "Champions" from the student body.</p>
+        </div>
+        <div class="roadmap-step">
+          <div class="num">3</div>
+          <h3>Build Ecosystem — Expansion</h3>
+          <p>Establish school clubs, mentoring programs, and community events to ensure sustainability.</p>
+        </div>
+      </div>
+      <div class="contact-box">
+        <h3 style="margin-bottom: 6px;">Contact Us</h3>
+        <p>Let's build a financially literate future generation.</p>
+        <p><strong>Email</strong> <a href="mailto:contact@improvemeinstitute.com">contact@improvemeinstitute.com</a></p>
+        <p><strong>Location</strong> Gold and Diamond Park, Dubai</p>
+      </div>
+    </section>
+  </div>
+
+  <button class="btn-download-pdf" id="downloadPdf" aria-label="Download PDF">↓ Download PDF</button>
+  <button class="nav-arrow nav-prev" id="prev" aria-label="Previous slide">‹</button>
+  <button class="nav-arrow nav-next" id="next" aria-label="Next slide">›</button>
+  <div class="nav" id="dots" role="tablist"></div>
+  <div class="slide-num" id="slideNum">1 / 8</div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    let current = 0;
+
+    function go(n) {
+      current = (n + total) % total;
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
+    }
+
+    const dots = document.getElementById('dots');
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', () => go(i));
+      dots.appendChild(dot);
+    }
+
+    document.getElementById('prev').addEventListener('click', () => go(current - 1));
+    document.getElementById('next').addEventListener('click', () => go(current + 1));
+    document.getElementById('downloadPdf').addEventListener('click', async () => {
+      const deck = document.querySelector('.deck');
+      const W = 960, H = 540;
+      const savedIdx = current;
+      const savedW = deck.style.width;
+      const savedH = deck.style.height;
+      deck.style.width = W + 'px';
+      deck.style.height = H + 'px';
+      document.getElementById('downloadPdf').disabled = true;
+      document.getElementById('downloadPdf').textContent = 'Generating…';
+      try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [W, H], hotfixes: ['px_scaling'] });
+        for (let i = 0; i < total; i++) {
+          if (i > 0) pdf.addPage([W, H], 'l');
+          go(i);
+          await new Promise(r => requestAnimationFrame(() => setTimeout(r, 150)));
+          const canvas = await html2canvas(deck, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: null, width: W, height: H, windowWidth: W, windowHeight: H });
+          const img = canvas.toDataURL('image/jpeg', 0.95);
+          pdf.addImage(img, 'JPEG', 0, 0, W, H);
+        }
+        go(savedIdx);
+        pdf.save('Strategic-Partnership-Proposal.pdf');
+      } finally {
+        deck.style.width = savedW;
+        deck.style.height = savedH;
+        document.getElementById('downloadPdf').disabled = false;
+        document.getElementById('downloadPdf').textContent = '↓ Download PDF';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') go(current - 1);
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+    });
+
+    go(0);
+  </script>
+</body>
+</html>
