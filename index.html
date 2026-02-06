@@ -641,7 +641,7 @@
           <div class="expert-photo-placeholder" style="display:none;">JD</div>
           <p class="expert-role">Co-Founder — Tech</p>
           <h3 class="expert-name">Jason Daswani</h3>
-          <p class="expert-description">Combining solutions in education and tech to deliver innovative products to boost student attainment.</p>
+          <p class="expert-description">Combining solutions in education and tech to boost student attainment.</p>
         </div>
         <div class="expert-card-v2">
           <img src="./markai.png" alt="Mark" class="expert-photo" style="object-position: center 35%;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -713,8 +713,8 @@
           </div>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 14px;">
-        <img src="officefullscale.png" alt="Office full scale" style="max-width: 60%; height: auto; border-radius: 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+      <div style="margin-top: 14px;">
+        <img src="officefullscale.png" alt="Office full scale" style="width: 100%; height: 150px; object-fit: cover; border-radius: 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
       </div>
       </div>
       <div class="slide-footer-bar">
@@ -1116,10 +1116,10 @@
     // Fix html2canvas object-fit bug: pre-crop images before capture, restore after
     function fixObjectFitImages(container) {
       const saved = [];
-      container.querySelectorAll('.expert-photo').forEach(img => {
+      container.querySelectorAll('img').forEach(img => {
         if (!img.complete || img.naturalWidth === 0) return;
         const style = getComputedStyle(img);
-        if (style.objectFit !== 'cover') return;
+        if (style.objectFit !== 'cover' && style.objectFit !== 'contain') return;
         const w = img.offsetWidth, h = img.offsetHeight;
         if (!w || !h) return;
         // Parse object-position (e.g. "50% 35%" or "center center")
@@ -1139,7 +1139,7 @@
         }
         // Draw cropped image to canvas at high resolution
         const c = document.createElement('canvas');
-        c.width = w * 3; c.height = h * 3;
+        c.width = w * 4; c.height = h * 4;
         const ctx = c.getContext('2d');
         ctx.drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
         saved.push({ img, src: img.src, objFit: img.style.objectFit, objPos: img.style.objectPosition });
