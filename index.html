@@ -93,6 +93,7 @@
     .slide-footer-bar .footer-right { font-size: 0.7rem; color: var(--text-muted); }
 
     .slide-content { padding: 20px 40px 24px; flex: 1; min-height: 0; overflow: auto; }
+    .slide[data-slide="8"] .slide-content { padding: 12px 36px 10px; }
     /* Slide 5: Optimized spacing to eliminate scroll */
     .slide[data-slide="5"] .slide-content { padding: 1.5rem 2.5rem 1.5rem; }
     .slide[data-slide="5"] .slide-content > p:first-of-type { margin-bottom: 0.5rem; line-height: 1.4; }
@@ -145,15 +146,15 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 0.6rem;
-      width: 160px;
+      gap: 0.45rem;
+      width: 155px;
       flex-shrink: 0;
       padding-top: 0;
     }
     .slide[data-slide="6"] .stat-card-vertical {
       background: linear-gradient(135deg, #2E5AAC 0%, #1E3A8A 100%);
       border-radius: 10px;
-      padding: 0.75rem 0.7rem;
+      padding: 0.55rem 0.6rem;
       text-align: center;
       box-shadow: 0 4px 12px rgba(46, 90, 172, 0.2);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -161,14 +162,14 @@
       box-sizing: border-box;
     }
     .slide[data-slide="6"] .stat-card-vertical .stat-value {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: #FFFFFF;
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
     .slide[data-slide="6"] .stat-card-vertical .stat-label {
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.9);
       line-height: 1.15;
@@ -176,19 +177,43 @@
       letter-spacing: 0.03em;
       margin-top: 0;
     }
+    /* Slide 6: Survey compact callout */
+    .survey-compact {
+      background: rgba(79, 209, 197, 0.12);
+      border-left: 4px solid #4FD1C5;
+      padding: 0.5rem 0.75rem;
+      margin: 0.4rem 0 0.4rem;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      border-radius: 8px;
+      color: var(--text-body);
+    }
+    .survey-compact .survey-compact-title {
+      font-weight: 700;
+      font-size: 0.74rem;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .survey-compact .survey-compact-row {
+      margin-bottom: 0.15rem;
+    }
+    .survey-compact .survey-highlight {
+      font-weight: 700;
+      color: #0F766E;
+    }
     /* Slide 6: Case study images container */
     .case-study-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 0.75rem;
       margin-top: auto;
-      height: 200px;
+      height: 160px;
       min-width: 0;
     }
     .case-study-images img {
       width: 100%;
       height: 100%;
-      max-height: 200px;
+      max-height: 160px;
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -261,16 +286,17 @@
     .phase-label .phase-name { font-size: 0.85rem; font-weight: 700; color: var(--cream); margin: 0; }
     .phase-connector { display: flex; align-items: center; justify-content: center; padding: 0 4px; color: var(--teal); font-size: 0.9rem; }
     .phase-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 0; }
-    .phase-card { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; box-shadow: var(--shadow-blue); }
-    .phase-card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-accent-card); border: 1px solid var(--border-blue); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 1rem; color: var(--teal); }
-    .phase-card-icon i { font-size: 1.1rem; color: var(--teal); }
-    .phase-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--cream); margin: 0 0 8px 0; line-height: 1.2; }
-    .phase-card .phase-desc { font-size: 0.72rem; line-height: 1.4; color: var(--text-body); margin: 0 0 12px 0; flex: 1; }
-    .phase-card .phase-sub { background: var(--blue-accent-card); border: 1px solid var(--border-blue); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .phase-card { background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 12px; padding: 10px 12px; padding-bottom: 12px; display: flex; flex-direction: column; box-shadow: var(--shadow-blue); }
+    .phase-card-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--blue-accent-card); border: 1px solid var(--border-blue); display: flex; align-items: center; justify-content: center; margin-bottom: 6px; font-size: 0.85rem; color: var(--teal); }
+    .phase-card-icon i { font-size: 0.9rem; color: var(--teal); }
+    .phase-card h3 { font-size: 0.82rem; font-weight: 700; color: var(--cream); margin: 0 0 4px 0; line-height: 1.2; }
+    .phase-card .phase-desc { font-size: 0.7rem; line-height: 1.35; color: var(--text-body); margin: 0 0 8px 0; flex: 1; }
+    .phase-card .phase-sub { background: var(--blue-accent-card); border: 1px solid var(--border-blue); border-radius: 6px; padding: 6px 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .phase-card .phase-sub .phase-sub-label { font-size: 0.65rem; color: var(--muted); margin: 0; }
     .phase-card .phase-sub .phase-sub-value { font-size: 0.72rem; font-weight: 600; color: var(--cream); margin: 0; }
-    .phase-card-bottom-image { display: flex; align-items: center; justify-content: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-blue); }
+    .phase-card-bottom-image { display: none; }
     .phase-card-bottom-image img { max-width: 100%; height: auto; max-height: 120px; object-fit: contain; }
+    .pillar-image { display: none; }
     .phase-card-bottom-icon { display: flex; align-items: center; justify-content: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-blue); }
     .phase-card-bottom-icon i { font-size: 3rem; color: var(--teal); }
 
@@ -365,6 +391,10 @@
       font-weight: 700;
       color: #1A1A1A;
       margin: 0 0 0.75rem 0;
+      min-height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .expert-card-v2 .expert-description {
       font-size: 0.72rem;
@@ -426,11 +456,11 @@
     .budget-detail-item { text-align: center; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
 
-    .roadmap { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
-    .roadmap-step { flex: 1; min-width: 140px; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px; border-radius: 8px; border: 1px solid var(--border-blue); border-top: 3px solid var(--teal); box-shadow: var(--shadow-blue); }
-    .roadmap-step .num { font-size: 1.1rem; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
-    .roadmap-step h3 { font-size: 0.8rem; margin-bottom: 4px; }
-    .roadmap-step p { font-size: 0.7rem; }
+    .roadmap { display: flex; gap: 10px; margin-top: 8px; margin-bottom: 0; flex-wrap: wrap; }
+    .roadmap-step { flex: 1; min-width: 140px; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 10px; border-radius: 8px; border: 1px solid var(--border-blue); border-top: 3px solid var(--teal); box-shadow: var(--shadow-blue); }
+    .roadmap-step .num { font-size: 1rem; font-weight: 700; color: var(--teal); margin-bottom: 2px; }
+    .roadmap-step h3 { font-size: 0.75rem; margin-bottom: 2px; }
+    .roadmap-step p { font-size: 0.65rem; line-height: 1.35; margin-bottom: 0; }
 
     /* Slide 7: Deployment Loop (reference layout, dark theme) — 50% left, 50% right */
     .slide-deployment-page .slide-deployment { flex: 1; min-height: 0; }
@@ -483,6 +513,39 @@
     .tracked-metric .metric-icon { font-size: 1rem; color: var(--teal); flex-shrink: 0; }
     .tracked-metric .metric-label { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 2px 0; font-weight: 600; }
     .tracked-metric .metric-value { font-size: 1.05rem; font-weight: 800; color: var(--teal); margin: 0; }
+
+    /* Testimonial / Quote section (Slide 8) */
+    .testimonial-section {
+      background: rgba(79, 209, 197, 0.08);
+      border-left: 4px solid #4FD1C5;
+      padding: 0.7rem 1.25rem 0.7rem 2.2rem;
+      margin: 0.75rem 0;
+      border-radius: 8px;
+      position: relative;
+    }
+    .quote-icon {
+      position: absolute;
+      top: 0.4rem;
+      left: 0.7rem;
+      font-size: 1.8rem;
+      color: #4FD1C5;
+      opacity: 0.3;
+      line-height: 1;
+    }
+    .quote-text {
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: #2C3E50;
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+    .quote-attribution {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #2E5AAC;
+      text-align: right;
+      margin: 0;
+    }
 
     .contact-box { margin-top: 12px; padding: 12px; background: var(--blue-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-blue); border-radius: 8px; box-shadow: var(--shadow-blue); }
     .contact-box h3 { font-size: 0.8rem; margin-bottom: 6px; }
@@ -567,24 +630,24 @@
           <p class="expert-description">Over 30 years of expertise in raising academic standards and supporting student success.</p>
         </div>
         <div class="expert-card-v2">
-          <img src="./shaun.png" alt="Shaun" class="expert-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="expert-photo-placeholder" style="display:none;">S</div>
-          <p class="expert-role">Financial Literacy Co-Founder — Strategy</p>
-          <h3 class="expert-name">Shaun</h3>
-          <p class="expert-description">Leading the initiative with background in finance (Morgan Stanley). Alumni of top universities.</p>
+          <img src="./shaun.png" alt="Shaun Daswani" class="expert-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="expert-photo-placeholder" style="display:none;">SD</div>
+          <p class="expert-role">Co-Founder — Strategy</p>
+          <h3 class="expert-name">Shaun Daswani</h3>
+          <p class="expert-description">Leading the financial literacy initiative, 8+ years in financial markets.</p>
         </div>
         <div class="expert-card-v2">
-          <img src="./jason_profile.png" alt="Jason" class="expert-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="expert-photo-placeholder" style="display:none;">J</div>
-          <p class="expert-role">Financial Literacy Co-Founder — Tech</p>
-          <h3 class="expert-name">Jason</h3>
-          <p class="expert-description">Leading the initiative with background in finance & tech. Alumni of top universities.</p>
+          <img src="./jason_profile.png" alt="Jason Daswani" class="expert-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="expert-photo-placeholder" style="display:none;">JD</div>
+          <p class="expert-role">Co-Founder — Tech</p>
+          <h3 class="expert-name">Jason Daswani</h3>
+          <p class="expert-description">Combining solutions in education and tech to deliver innovative products to boost student attainment.</p>
         </div>
         <div class="expert-card-v2">
           <img src="./markai.png" alt="Mark" class="expert-photo" style="object-position: center 35%;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="expert-photo-placeholder" style="display:none;">M</div>
-          <p class="expert-role">Head of Financial Education — Curriculum Design</p>
-          <h3 class="expert-name">Mark</h3>
+          <p class="expert-role">Financial Education</p>
+          <h3 class="expert-name">Mark Barlow</h3>
           <p class="expert-description">25+ years in financial services. Responsible for OECD-aligned curriculum design.</p>
         </div>
       </div>
@@ -630,9 +693,6 @@
             <span class="phase-sub-label">Example:</span>
             <span class="phase-sub-value">"Bartering to Bitcoin"</span>
           </div>
-          <div class="phase-card-bottom-image">
-            <img src="quiz.JPG" alt="Quiz" />
-          </div>
         </div>
         <div class="phase-card">
           <div class="phase-card-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
@@ -641,9 +701,6 @@
           <div class="phase-sub">
             <span class="phase-sub-label">Focus:</span>
             <span class="phase-sub-value">Financial Capability & Resilience</span>
-          </div>
-          <div class="phase-card-bottom-image">
-            <img src="GCSE Maths Class (4).jpeg" alt="Financial Capability" />
           </div>
         </div>
         <div class="phase-card">
@@ -654,10 +711,10 @@
             <span class="phase-sub-label">Format:</span>
             <span class="phase-sub-value">"Shark Tank" Style Pitching</span>
           </div>
-          <div class="phase-card-bottom-image">
-            <img src="conference.jpg" alt="Sales Pitch" />
-          </div>
         </div>
+      </div>
+      <div style="text-align: center; margin-top: 14px;">
+        <img src="officefullscale.png" alt="Office full scale" style="max-width: 60%; height: auto; border-radius: 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
       </div>
       </div>
       <div class="slide-footer-bar">
@@ -727,6 +784,11 @@
             <p class="item-desc">"Risky Business" workshop on digital fraud.</p>
           </div>
         </div>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 12px; margin-top: 12px;">
+        <img src="GCSE Maths Class (4).jpeg" alt="GCSE Maths Class" style="width: 30%; height: 120px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+        <img src="quiz.JPG" alt="Quiz" style="width: 30%; height: 120px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+        <img src="conference.jpg" alt="Conference" style="width: 30%; height: 120px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
       </div>
       </div>
       <div class="slide-footer-bar">
@@ -821,6 +883,11 @@
               <li><strong>University Applications:</strong> Experience used as leadership evidence in personal statements.</li>
               <li><strong>Behavioral Change:</strong> 100% simulation success shows effective knowledge transfer.</li>
             </ul>
+            <div class="survey-compact">
+              <div class="survey-compact-title">📊 Student Survey Results (1-10 confidence scale)</div>
+              <div class="survey-compact-row">Before: <span class="survey-highlight">69% scored below 7</span> (not confident) &nbsp;|&nbsp; After: <span class="survey-highlight">100% scored 7+</span></div>
+              <div class="survey-compact-row">Impact: <span class="survey-highlight">50%+ now rate 9-10</span> (vs just 3% before)</div>
+            </div>
           </div>
           <div class="case-study-images">
             <img src="jps1.JPG" alt="Safa Community School case study image 1" />
@@ -839,6 +906,10 @@
           <div class="stat-card-vertical">
             <div class="stat-value">100%</div>
             <div class="stat-label">Budget Adherence</div>
+          </div>
+          <div class="stat-card-vertical" style="background: linear-gradient(135deg, #0F766E 0%, #115E59 100%);">
+            <div class="stat-value">50%+</div>
+            <div class="stat-label">Rate 9-10 Confidence<br><span style="font-size: 0.55rem; opacity: 0.8;">(vs 3% before)</span></div>
           </div>
         </div>
       </div>
@@ -968,7 +1039,7 @@
         <span class="header-label">Next Steps</span>
       </div>
       <div class="slide-content">
-      <p class="subtitle"><strong>Strategic Goal:</strong> Formalize strategic endorsement with Zoud to scale region-wide.</p>
+      <p class="subtitle" style="margin-bottom: 6px; font-size: 0.82rem;"><strong>Strategic Goal:</strong> Formalize strategic endorsement with Zoud to scale region-wide.</p>
       <div class="roadmap">
         <div class="roadmap-step">
           <div class="num">1</div>
@@ -986,8 +1057,17 @@
           <p>Establish school clubs, mentoring programs, and community events to ensure sustainability.</p>
         </div>
       </div>
-      <div class="contact-box">
-        <h3 style="margin-bottom: 6px;">Contact Us</h3>
+      <div class="testimonial-section">
+        <div class="quote-icon">❝</div>
+        <p class="quote-text">
+          Preparing a new generation of financial leaders is one of the most important investments we can make in the UAE's future. These young minds will take the lead in financial planning, managing public resources, and developing creative solutions to tomorrow's challenges
+        </p>
+        <p class="quote-attribution">
+          - H.E. Younis Haji Al Khoori, Under-Secretary of the Ministry of Finance, UAE
+        </p>
+      </div>
+      <div class="contact-box" style="margin-top: 0.5rem; padding: 0.75rem 1.25rem;">
+        <h3 style="margin-bottom: 4px;">Contact Us</h3>
         <p>Let's build a financially literate future generation.</p>
         <p><strong>Email</strong> <a href="mailto:contact@improvemeinstitute.com">contact@improvemeinstitute.com</a></p>
         <p><strong>Location</strong> Gold and Diamond Park, Dubai</p>
@@ -1130,7 +1210,7 @@
           await new Promise(r => requestAnimationFrame(() => setTimeout(r, 100)));
 
           const canvas = await html2canvas(deck, { 
-            scale: 2.5, 
+            scale: 4, 
             useCORS: true, 
             allowTaint: false, 
             backgroundColor: null, 
@@ -1142,7 +1222,7 @@
             imageTimeout: 15000,
             removeContainer: false
           });
-          const img = canvas.toDataURL('image/jpeg', 0.92);
+          const img = canvas.toDataURL('image/jpeg', 0.98);
           pdf.addImage(img, 'JPEG', 0, 0, W, H);
 
           // Restore original images after capture
